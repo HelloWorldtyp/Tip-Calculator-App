@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText group;
     EditText Input;
     TextView Tip;
+    TextView members;
     TextView Final;
     RadioGroup radio;
     RadioButton inGroup;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         noGroup = findViewById(R.id.noGroup);
         Final = findViewById(R.id.TotalCostDisplay);
         Tip = findViewById(R.id.TipPercentage);
+        members = findViewById(R.id.totalMembers);
 
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -62,16 +64,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if(i == EditorInfo.IME_ACTION_DONE){
                     double input = Double.parseDouble(Input.getText().toString());
-                    int percentage = Integer.parseInt(seekLabel.getText().toString());
-                    double tip_amount = (1 + (percentage/100) * input);
+                    double percentage = Double.parseDouble(seekLabel.getText().toString());
+                    double tip_amount = ((percentage/100) * input);
                     double total = input + tip_amount;
+
 
                     if(inGroup.isChecked()){
                         double group_members = Double.parseDouble(group.getText().toString());
-                        total = (input + tip_amount)/group_members;
+                        total = (tip_amount/group_members);
+                        double Members = total/group_members;
+                        members.setText(String.format("%.3f", Members));
+
                     }else if(noGroup.isChecked()){
                         total = input + tip_amount;
                     }
+
                     Tip.setText(String.format("%.3f", tip_amount));
                     Final.setText(String.format("%.3f", total));
                 }

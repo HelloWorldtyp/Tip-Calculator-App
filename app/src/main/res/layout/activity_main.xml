@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4CAF50"
     tools:context=".MainActivity">
 
     <TextView
@@ -48,6 +49,7 @@
         android:layout_marginBottom="92dp"
         android:ems="10"
         android:hint="Input the Standard Price"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
@@ -136,29 +138,30 @@
         android:id="@+id/TotalCostDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="18dp"
         android:text="Total Cost"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.316"
+        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/TipPercentage" />
+        app:layout_constraintTop_toBottomOf="@+id/totalMembers" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:text="The Final Cost Calculation: "
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:text="Tip Amount"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -169,10 +172,33 @@
         android:id="@+id/TipPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="72dp"
         android:text="Total Tip"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/GroupInput" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Total for Each Member"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/totalMembers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Total Members"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/TipPercentage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
