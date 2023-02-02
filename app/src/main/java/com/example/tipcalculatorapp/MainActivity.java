@@ -59,6 +59,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        group.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_DONE){
+                    double input = Double.parseDouble(Input.getText().toString());
+                    double percentage = Double.parseDouble(seekLabel.getText().toString());
+                    double tip_amount = ((percentage/100) * input);
+                    double total = input + tip_amount;
+
+
+                    if(inGroup.isChecked()){
+                        double group_members = Double.parseDouble(group.getText().toString());
+
+                        double Members = (tip_amount/group_members);
+                        total = (input + tip_amount)/group_members;
+                        members.setText(String.format("%.3f", Members));
+                        Tip.setText(String.format("%.2f", tip_amount));
+                        Final.setText(String.format("%.2f", total));
+
+                    }else if(noGroup.isChecked()){
+                        total = input + tip_amount;
+                        Tip.setText(String.format("%.2f", tip_amount));
+                        Final.setText(String.format("%.2f", total));
+
+                    }
+
+                }
+                return false;
+            }
+        });
+
         Input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -71,16 +102,20 @@ public class MainActivity extends AppCompatActivity {
 
                     if(inGroup.isChecked()){
                         double group_members = Double.parseDouble(group.getText().toString());
-                        total = (tip_amount/group_members);
-                        double Members = total/group_members;
+
+                        double Members = (tip_amount/group_members);
+                        total = (input + tip_amount)/group_members;
                         members.setText(String.format("%.3f", Members));
+                        Tip.setText(String.format("%.2f", tip_amount));
+                        Final.setText(String.format("%.2f", total));
 
                     }else if(noGroup.isChecked()){
                         total = input + tip_amount;
+                        Tip.setText(String.format("%.2f", tip_amount));
+                        Final.setText(String.format("%.2f", total));
+
                     }
 
-                    Tip.setText(String.format("%.3f", tip_amount));
-                    Final.setText(String.format("%.3f", total));
                 }
                 return false;
             }

@@ -118,6 +118,7 @@
             android:id="@+id/noGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="No: Don't Split The Cost" />
     </RadioGroup>
 
@@ -129,6 +130,7 @@
         android:layout_marginTop="68dp"
         android:ems="10"
         android:hint="How many members"
+        android:imeOptions="actionDone"
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
