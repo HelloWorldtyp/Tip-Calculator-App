@@ -3,6 +3,8 @@ package com.example.tipcalculatorapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,11 +12,14 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int newTip;
+    private int newMembers;
+    private boolean newSplit;
 
     SeekBar seekbar;
     TextView seekLabel;
@@ -23,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     TextView Tip;
     TextView members;
     TextView Final;
-    RadioGroup radio;
     RadioButton inGroup;
     RadioButton noGroup;
+    Button settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,16 @@ public class MainActivity extends AppCompatActivity {
         Final = findViewById(R.id.TotalCostDisplay);
         Tip = findViewById(R.id.TipPercentage);
         members = findViewById(R.id.totalMembers);
+        settingsButton = findViewById(R.id.button);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(i);
+
+            }
+        });
 
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -90,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         Input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
@@ -122,8 +139,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
+
+    private void updateColor(){
+        SharedPreferences sp = getSharedPreferences("shared", MODE_PRIVATE);
+        newTip = sp.getInt("new tip", 69);
+        newMembers = sp.getInt("new members", 69);
+        newSplit = sp.getBoolean("new split", false);
+        seekLabel.setText(newTip);
+        group.setText(newMembers);
+
+        if(newSplit == true){
+            inGroup.isChecked();
+        }else {
+            noGroup.isChecked();
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateColor();
+    }
+
 
 }
