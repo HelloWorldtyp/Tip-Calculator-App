@@ -208,6 +208,7 @@
         android:ems="10"
         android:hint="Input the Price"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintStart_toEndOf="@+id/textView3" />
 

@@ -141,25 +141,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateColor(){
+   private void updateTip(){
         SharedPreferences sp = getSharedPreferences("shared", MODE_PRIVATE);
         newTip = sp.getInt("new tip", 69);
         newMembers = sp.getInt("new members", 69);
-        newSplit = sp.getBoolean("new split", false);
-        seekLabel.setText(newTip);
-        group.setText(newMembers);
-
+        newSplit = sp.getBoolean("new split", true);
+        seekbar.setProgress(newTip);
+        seekLabel.setText(newTip + "");
+        group.setText(newMembers + "");
+//
         if(newSplit == true){
-            inGroup.isChecked();
+            inGroup.setChecked(true);
         }else {
-            noGroup.isChecked();
+            noGroup.setChecked(true);
         }
     }
-
+//
     @Override
     public void onResume(){
         super.onResume();
-        updateColor();
+        updateTip();
     }
 
 
